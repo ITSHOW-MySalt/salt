@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 33.33%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.container img {
+  height: 100%;
+  width: auto;
+  display: block;
+  transform: scale(1.20); /* 배경 확대 */
+}
+
+.nickname-box {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nickname-box input {
+  padding: 12px 50px;
+  font-size: 16px;
+  border: 2px solid #999;
+  border-radius: 8px;
+  outline: none;
+  background-color: white;
+  text-align: center;
+}
+
+.start-btn {
+  position: absolute;
+  top: 53%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start-btn img {
+  width: 310px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.start-btn img:hover {
+  transform: scale(0.95); 
+}

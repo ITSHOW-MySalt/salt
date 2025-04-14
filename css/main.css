@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 33.33%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.container img {
+  height: 100%;
+  width: auto;
+  display: block;
+  transform: scale(1.20); /* 배경 확대 */
+}
+
+.overlay {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.overlay img {
+  width: 320px;
+  height: auto;
+  transition: transform 0.2s ease;
+}
+
+.overlay img:hover {
+  transform: scale(1.05);
+}
