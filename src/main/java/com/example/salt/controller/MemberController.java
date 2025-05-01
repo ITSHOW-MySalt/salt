@@ -23,7 +23,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/login")
     public String login(MemberDTO dto) {
         return "login_tmp";
     }
