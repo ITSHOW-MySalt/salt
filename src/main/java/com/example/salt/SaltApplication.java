@@ -8,5 +8,4 @@ public class SaltApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SaltApplication.class, args);
 	}
-
 }
