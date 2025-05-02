@@ -11,8 +11,8 @@ public class HomeController {
         return "main";
     }
 
-    @GetMapping("/nick")
+    @GetMapping("/user")
     public String showNicknamePage() {
-        return "nickname";
+        return "username";
     }
 }

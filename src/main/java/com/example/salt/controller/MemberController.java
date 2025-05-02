@@ -23,17 +23,12 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/login")
-    public String login(MemberDTO dto) {
-        return "login_tmp";
-    }
-
-    @PostMapping("/login_tmp")
+    @PostMapping("/loginSuccess")
     public String showResultPage(@RequestParam String username, Model model) {
         boolean success = memberService.saveIfNew(username);
         model.addAttribute("username", username);
         model.addAttribute("isSaved", success);
-        return "loginresult_tmp";
+        return "loginresult";
     }
 
 
