@@ -4,6 +4,7 @@ import com.example.salt.dto.MemberDTO;
 import com.example.salt.entity.MemberEntity;
 import com.example.salt.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,6 +17,7 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
+
     public boolean saveIfNew(String username) {
         if(!memberRepository.existsByUsername(username)) {
             MemberDTO dto = new MemberDTO();
@@ -25,7 +27,9 @@ public class MemberService {
             memberRepository.save(entity);
             return true;
         }
-        return false;
+        else {
+            throw new IllegalArgumentException("이미 존재하는 사용자 이름입니다.");
+        }
     }
 
 }
