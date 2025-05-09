@@ -22,7 +22,7 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("/loginSuccess")
+    @PostMapping("/gender")
     public String showResultPage(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, Model model) {
         String username = memberDTO.getUsername();
 
@@ -41,8 +41,4 @@ public class MemberController {
             return "username";
         }
     }
-
-
-
-
 }
