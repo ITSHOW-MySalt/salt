@@ -4,18 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나의 소박한 금융 이야기</title>
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
 <div class="character">
-    <img src="character.png" alt="캐릭터 이미지">
+    <img th:src="@{/img/character}" alt="캐릭터 이미지">
 </div>
 <div class="dialogue">
     <p><span th:text="${dto.dialogue}"></span></p>
 </div>
 <div class="options">
-    <button th:text="${dto.choice1}"></button>
-    <button th:text="${dto.choice2}"></button>
+    <form action="/dialogues/normal-events" method="get">
+<!--        action 이후 경로 바꿔주기-->
+        <button th:text="${dto.choice1}"></button>
+    </form>
+    <form action="/dialogues/normal-events" method="get">
+        <!--        action 이후 경로 바꿔주기-->
+        <button th:text="${dto.choice2}"></button>
+    </form>
 </div>
 </body>
 </html>
