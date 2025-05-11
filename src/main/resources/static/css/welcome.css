@@ -1,0 +1,53 @@
+body {
+  margin: 0;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%; /* 전체 너비 */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container img {
+  height: 100%;
+  width: auto;
+  display: block;
+}
+
+.welcome-message {
+  position: absolute;
+  top: 45%; /* 위치 조정 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 24px; /* 글자 크기 */
+  color: #333; /* 글자 색상 */
+  white-space: nowrap; /* 줄 바꿈 방지 */
+}
+
+.start-game-btn {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.start-game-btn img {
+  width: 310px; /* 버튼 이미지 너비 */
+  height: auto; /* 높이는 자동 */
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.start-game-btn img:hover {
+  transform: scale(0.95);
+}

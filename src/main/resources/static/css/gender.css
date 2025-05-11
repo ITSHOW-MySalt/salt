@@ -1,0 +1,71 @@
+body {
+  margin: 0;
+  background: white; /* 배경색 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%; /* 전체 너비 */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.container img {
+  height: 100%; /* 배경 이미지 높이 */
+  width: auto; /* 비율 유지 */
+  display: block;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px; /* 원하는 위치로 조정 */
+  left: 20px; /* 원하는 위치로 조정 */
+  width: 40px; /* 버튼 너비 조절 */
+  height: auto; /* 높이는 자동 */
+  display: block;
+}
+
+.back-button img {
+  width: 100%; /* 부모(.back-button) 너비에 맞춤 */
+  height: auto; /* 비율 유지 */
+  display: block; /* 이미지도 블록 요소로 */
+}
+
+.question-box {
+  position: absolute;
+  top: 45%; /* 질문 박스 위치 조정 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.gender-btns {
+  position: absolute;
+  top: 60%; /* 버튼 위치 조정 */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* 버튼 간격 조절 */
+}
+
+.gender-btn {
+  padding: 12px 50px; /* 버튼 안쪽 여백 */
+  font-size: 16px; /* 글자 크기 */
+  border: 2px solid #999; /* 테두리 */
+  border-radius: 8px; /* 모서리 둥글게 */
+  background-color: white; /* 배경색 */
+  cursor: pointer; /* 마우스 커서 변경 */
+  transition: transform 0.2s ease; /* 마우스 오버 시 효과 */
+}
+
+.gender-btn:hover {
+  transform: scale(0.95); /* 마우스 오버 시 버튼 크기 줄어드는 효과 */
+}

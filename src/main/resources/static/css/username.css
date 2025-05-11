@@ -18,7 +18,7 @@ body {
   position: relative;
 }
 
-.container img {
+.container > img {
   height: 100%;
   width: auto;
   display: block;
@@ -27,8 +27,18 @@ body {
 
 .back-button {
   position: absolute;
-  top: 20px; /* 원하는 위치로 조정 */
-  left: 20px; /* 원하는 위치로 조정 */
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: auto;
+  display: block;
+}
+
+/* back_arrow 이미지 크기 조절 */
+.back-button img {
+  width: 100%; /* 부모(.back-button) 너비에 맞춤 */
+  height: auto; /* 비율 유지 */
+  display: block; /* 이미지도 블록 요소로 */
 }
 
 .username-box {
@@ -69,5 +79,5 @@ body {
 }
 
 .start-btn img:hover {
-  transform: scale(0.95); 
+  transform: scale(0.95);
 }

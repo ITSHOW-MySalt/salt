@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>성별 선택</title>
+    <link rel="stylesheet" href="/css/gender.css">
+</head>
+<body>
+<div class="container">
+    <img src="/img/background_gray.png" alt="배경 이미지">
+
+    <a href="/user" class="back-button">
+        <img src="/img/back_arrow.png" alt="뒤로가기">
+    </a>
+
+    <div class="question-box">
+        <p>당신의 성별은 무엇인가요?</p>
+        <p>(스토리에 영향을 끼치지 않습니다.)</p>
+    </div>
+
+    <div class="gender-btns"> <!-- 성별 선택 버튼들 -->
+        <button type="button" class="gender-btn" onclick="location.href='/nextPage?gender=female'">여자</button>
+        <button type="button" class="gender-btn" onclick="location.href='/nextPage?gender=male'">남자</button>
+    </div>
+</div>
+
+</body>
+</html>

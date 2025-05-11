@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>환영합니다!</title>
+    <link rel="stylesheet" href="/css/welcome.css">
+</head>
+<body>
+<div class="container">
+    <img src="/img/background_gray.png" alt="배경 이미지">
+
+    <!-- 유저 닉네임을 표시하는 부분 -->
+    <div class="welcome-message">
+        <p th:text="${memberDTO.username} + '님의 새로운 시작을 환영합니다.'"></p>
+    </div>
+
+    <!-- 시작하기 버튼 -->
+    <div class="start-game-btn">
+        <img src="/img/startbtn.png" alt="시작하기">
+    </div>
+</div>
+
+</body>
+</html>
