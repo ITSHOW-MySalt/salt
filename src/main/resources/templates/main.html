@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>나의 소박한 금융이야기</title>
-  <link rel="stylesheet" href="../../../../css/main.css">
+  <link rel="stylesheet" th:href="@{/css/main.css}">
 
 </head>
 <body>
   <div class="container">
-    <img src="../../../../img/start_back.png" alt="시작화면">
+    <img src="/img/start_back.png" alt="시작화면">
 
     <div class="overlay">
-      <a href="/user">
-        <img src="../../../../img/new_startbtn.png" alt="새로시작">
+      <a th:href="@{/user}">
+        <img src="/img/new_startbtn.png" alt="새로시작">
       </a>      
-      <img src="../../../../img/continuebtn.png" alt="이어하기">
-<!--      <img src="../../../../img/endingbtn.png" alt="도감">-->
+      <img src="/img/continuebtn.png" alt="이어하기">
+<!--      <img src="/img/endingbtn.png" alt="도감">-->
     </div>
   </div>
 </body>
