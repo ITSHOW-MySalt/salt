@@ -27,6 +27,7 @@ public class MemberController {
         String username = memberDTO.getUsername();
 
         if(bindingResult.hasErrors()) {
+//            model.addAttribute("error", bindingResult.getFieldError().getDefaultMessage());
             return "username";
         }
 
@@ -35,10 +36,24 @@ public class MemberController {
 
             model.addAttribute("username", username);
             model.addAttribute("isSaved", success);
-            return "loginresult";
+            return "gender";
         } catch (IllegalArgumentException e){
             model.addAttribute("error", "존재하는 이름입니다");
             return "username";
         }
+    }
+
+    @PostMapping("/start")
+    public String startGame(@ModelAttribute MemberDTO memberDTO, Model model) {
+        String username = memberDTO.getUsername();
+        Integer gender = memberDTO.getGender();
+
+        memberService.updateGender(username, gender);
+
+        model.addAttribute("username", username);
+        System.out.println(username);
+        System.out.println(gender);
+
+        return "welcome";
     }
 }

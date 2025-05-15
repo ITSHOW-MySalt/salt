@@ -18,9 +18,15 @@ public class MemberEntity {
     @Column(nullable = false, unique = true)
     private String username;
 
+    @Column(name="gender")
+    private Integer gender;
+
+
+
     public static MemberEntity toMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
         memberEntity.setUsername(memberDTO.getUsername());
+        memberEntity.setGender(memberDTO.getGender());
         return memberEntity;
     }
 

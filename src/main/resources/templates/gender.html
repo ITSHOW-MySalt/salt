@@ -19,11 +19,22 @@
         <p>(스토리에 영향을 끼치지 않습니다.)</p>
     </div>
 
-    <div class="gender-btns"> <!-- 성별 선택 버튼들 -->
-        <button type="button" class="gender-btn" onclick="location.href='/nextPage?gender=female'">여자</button>
-        <button type="button" class="gender-btn" onclick="location.href='/nextPage?gender=male'">남자</button>
-    </div>
+    <form id="genderForm" method="post" action="/start" th:object="${memberDTO}">
+        <div class="gender-btns"> <!-- 성별 선택 버튼들 -->
+            <input type="hidden" name="username" th:value="${username}">
+            <input type="hidden" name="gender" id="genderInput">
+
+            <button type="button" class="gender-btn" onclick="submitGender(0)">남자</button>
+            <button type="button" class="gender-btn" onclick="submitGender(1)">여자</button>
+        </div>
+    </form>
 </div>
+<script>
+    function submitGender(gender) {
+        document.getElementById('genderInput').value = gender;
+        document.getElementById('genderForm').submit();
+    }
+</script>
 
 </body>
 </html>

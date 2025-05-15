@@ -15,4 +15,5 @@ public class MemberDTO {
     @Pattern(regexp = "^[가-힣a-zA-Z0-9]{1,15}$", message = "이름은 특수문자를 포함하지 않은 1~15자리여야 합니다")
     private String username;
 
+    private Integer gender;
 }
