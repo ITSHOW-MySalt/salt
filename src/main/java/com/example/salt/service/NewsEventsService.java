@@ -1,17 +1,17 @@
 package com.example.salt.service;
 
-import com.example.salt.dto.NewsDTO;
-import com.example.salt.repository.NewsRepository;
+import com.example.salt.dto.NewsEventsDTO;
+import com.example.salt.repository.NewsEventsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class NewsService {
+public class NewsEventsService {
 
     @Autowired
-    private NewsRepository repository;
+    private NewsEventsRepository repository;
 
-    public NewsService(NewsRepository repository) {
+    public NewsEventsService(NewsEventsRepository repository) {
         this.repository = repository;
     }
 
@@ -19,9 +19,9 @@ public class NewsService {
         return repository.countRows();
     }
 
-    public NewsDTO selectById(int selectId) {
+    public NewsEventsDTO selectById(int selectId) {
         return repository.findById(selectId)
-                .map(NewsDTO::new)
+                .map(NewsEventsDTO::new)
                 .orElse(null);
     }
 }
