@@ -1,9 +1,9 @@
 package com.example.salt.repository;
 
-import com.example.salt.entity.NormalEventsEntity;
+import com.example.salt.entity.NewsEntitiy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface NormalEventsRepository extends JpaRepository<NormalEventsEntity, Integer> {
+public interface NewsRepository  extends JpaRepository<NewsEntitiy, Integer> {
 }
