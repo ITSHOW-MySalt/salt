@@ -17,10 +17,11 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public boolean saveIfNew(String username) {
+    public boolean saveNewMember(String username, Integer gender) {
         if(!memberRepository.existsByUsername(username)) {
             MemberDTO dto = new MemberDTO();
             dto.setUsername(username);
+            dto.setGender(gender);
 
             MemberEntity entity = MemberEntity.toMemberEntity(dto);
             memberRepository.save(entity);
@@ -29,25 +30,6 @@ public class MemberService {
         else {
             throw new IllegalArgumentException("이미 존재하는 사용자 이름입니다.");
         }
-    }
-
-    public void updateGender(String username,Integer gender){
-//        if (memberRepository.findByUsername(username)) {
-//            MemberDTO dto = new MemberDTO();
-//            dto.setGender(gender);
-//
-//            MemberEntity entity = MemberEntity.toMemberEntity(dto);
-//
-//        }
-//        else {
-//            throw new IllegalArgumentException("사용자를 찾을 수 없습니다."));
-//        }
-
-        MemberEntity member = memberRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
-
-        member.setGender(gender);
-        memberRepository.save(member);
     }
 
 }

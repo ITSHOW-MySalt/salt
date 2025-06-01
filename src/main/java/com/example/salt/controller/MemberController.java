@@ -4,16 +4,14 @@ import com.example.salt.dto.MemberDTO;
 import com.example.salt.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
-@Controller
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
+@RequestMapping("/api")
 public class MemberController {
 
     private final MemberService memberService;
@@ -22,38 +20,23 @@ public class MemberController {
         this.memberService = memberService;
     }
 
-    @PostMapping("/gender")
-    public String showResultPage(@Valid @ModelAttribute MemberDTO memberDTO, BindingResult bindingResult, Model model) {
-        String username = memberDTO.getUsername();
-
-        if(bindingResult.hasErrors()) {
-//            model.addAttribute("error", bindingResult.getFieldError().getDefaultMessage());
-            return "username";
-        }
-
-        try {
-            boolean success = memberService.saveIfNew(username);
-
-            model.addAttribute("username", username);
-            model.addAttribute("isSaved", success);
-            return "gender";
-        } catch (IllegalArgumentException e){
-            model.addAttribute("error", "존재하는 이름입니다");
-            return "username";
-        }
-    }
-
-    @PostMapping("/start")
-    public String startGame(@ModelAttribute MemberDTO memberDTO, Model model) {
+    @PostMapping("/user")
+    public ResponseEntity<Map<String, Object>> showResultPage(@Valid @RequestBody MemberDTO memberDTO) {
+        Map<String, Object> response = new HashMap<>();
         String username = memberDTO.getUsername();
         Integer gender = memberDTO.getGender();
 
-        memberService.updateGender(username, gender);
+        System.out.println("서버로 들어온 데이터: username=" + memberDTO.getUsername() + ", gender=" + memberDTO.getGender());
 
-        model.addAttribute("username", username);
-        System.out.println(username);
-        System.out.println(gender);
-
-        return "welcome";
+        try {
+            boolean success = memberService.saveNewMember(username, gender);
+            response.put("username", username);
+            response.put("gender", gender);
+            response.put("isSaved", success);
+            return ResponseEntity.ok(response);
+        } catch (IllegalArgumentException e) {
+            response.put("error", "존재하는 이름입니다");
+            return ResponseEntity.badRequest().body(response);
+        }
     }
 }
