@@ -20,6 +20,17 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @PostMapping("/check")
+    public ResponseEntity<Map<String, Object>> checkUsername(@RequestBody Map<String, String> payload){
+        String username = payload.get("username");
+        Map<String, Object> response = new HashMap<>();
+
+        boolean exists = memberService.existsByUsername(username);
+        response.put("available", !exists);
+
+        return ResponseEntity.ok(response);
+    }
+
     @PostMapping("/user")
     public ResponseEntity<Map<String, Object>> showResultPage(@Valid @RequestBody MemberDTO memberDTO) {
         Map<String, Object> response = new HashMap<>();
@@ -30,10 +41,13 @@ public class MemberController {
 
         try {
             boolean success = memberService.saveNewMember(username, gender);
-            response.put("username", username);
-            response.put("gender", gender);
-            response.put("isSaved", success);
-            return ResponseEntity.ok(response);
+            if (success) {
+                response.put("username", username);
+                return ResponseEntity.ok(response);
+            } else {
+                response.put("error", "저장 실패");
+                return ResponseEntity.badRequest().body(response);
+            }
         } catch (IllegalArgumentException e) {
             response.put("error", "존재하는 이름입니다");
             return ResponseEntity.badRequest().body(response);

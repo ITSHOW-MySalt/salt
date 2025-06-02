@@ -32,4 +32,8 @@ public class MemberService {
         }
     }
 
+    public boolean existsByUsername(String username) {
+        return memberRepository.existsByUsername(username);
+    }
+
 }
