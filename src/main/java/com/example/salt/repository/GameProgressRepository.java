@@ -7,4 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface GameProgressRepository extends JpaRepository<GameProgressEntity, Integer> {
     boolean existsByMember(MemberEntity member);
+
+    GameProgressEntity findByMemberUsername(String username);
+
+    GameProgressEntity findByMember(MemberEntity member);
 }
