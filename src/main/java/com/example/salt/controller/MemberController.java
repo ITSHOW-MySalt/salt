@@ -1,6 +1,7 @@
 package com.example.salt.controller;
 
 import com.example.salt.dto.MemberDTO;
+import com.example.salt.service.GameProgressService;
 import com.example.salt.service.MemberService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +16,11 @@ import java.util.Map;
 public class MemberController {
 
     private final MemberService memberService;
+    private final GameProgressService gameProgressService;
 
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, GameProgressService gameProgressService) {
         this.memberService = memberService;
+        this.gameProgressService = gameProgressService;
     }
 
     @PostMapping("/check")
@@ -42,6 +45,8 @@ public class MemberController {
         try {
             boolean success = memberService.saveNewMember(username, gender);
             if (success) {
+                gameProgressService.initMember(username);
+
                 response.put("username", username);
                 return ResponseEntity.ok(response);
             } else {
