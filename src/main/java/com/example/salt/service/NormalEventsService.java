@@ -17,10 +17,13 @@ public class NormalEventsService {
     @Autowired
     private NormalEventsRepository normalEventsRepository;
 
-
     public NormalEventsDTO selectById(int selectId) {
         return normalEventsRepository.findById(selectId)
                 .map(NormalEventsDTO::new)
                 .orElse(null);
+    }
+
+    public long getRowCount() {
+        return normalEventsRepository.count();
     }
 }

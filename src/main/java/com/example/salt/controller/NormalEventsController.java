@@ -12,19 +12,21 @@ public class NormalEventsController {
 
     private final NormalEventsService service;
 
-    // 생성자 주입
     public NormalEventsController(NormalEventsService service) {
         this.service = service;
     }
 
-    // 처음 페이지 접근 시, 랜덤한 ID로 대사 1개 조회 후 보여줌
     @GetMapping("/dialogues/normal-events")
     public String normalEvents(Model model) {
-        int selectId = (int) (Math.random() * 18);  // 18은 추후 데이터 값 개수 불러오는 걸로 수정
+        long rowCount = service.getRowCount();
+        if (rowCount == 0) {
+            return "no-data"; // 데이터가 없는 경우 예외 처리
+        }
+
+        int selectId = (int) (Math.random() * rowCount) + 1; // 1부터 rowCount까지 중 랜덤 ID
         NormalEventsDTO dto = service.selectById(selectId);
         model.addAttribute("dto", dto);
         return "/index";
     }
-
-
 }
+
