@@ -6,11 +6,14 @@ import com.example.salt.service.NormalEventsService;
 import com.example.salt.service.StatChangeService;
 import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
+@RequestMapping("/api")
 @RestController
 public class NormalEventsController {
 
@@ -30,9 +33,12 @@ public class NormalEventsController {
     }
 
     @PostMapping("/event/{id}/choose")
-    public ResponseEntity<StatChangeDTO> applyStatChange(@PathVariable int id, @RequestParam int choiceNumber){
-        StatChangeDTO statChangeDTO = statChangeService.applyChoice(id, choiceNumber);
+    public ResponseEntity<StatChangeDTO> applyStatChange(
+            @PathVariable int id,
+            @RequestParam int choiceNumber,
+            @RequestParam int memberId){
 
+        StatChangeDTO statChangeDTO = statChangeService.applyChoice(id, choiceNumber, memberId);
         return ResponseEntity.ok(statChangeDTO);
     }
 

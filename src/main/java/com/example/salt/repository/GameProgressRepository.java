@@ -5,10 +5,10 @@ import com.example.salt.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 public interface GameProgressRepository extends JpaRepository<GameProgressEntity, Integer> {
     boolean existsByMember(MemberEntity member);
 
-    GameProgressEntity findByMemberUsername(String username);
-
-    GameProgressEntity findByMember(MemberEntity member);
+    Optional<GameProgressEntity> findByMember(MemberEntity member);
 }

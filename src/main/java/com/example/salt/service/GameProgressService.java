@@ -45,10 +45,9 @@ public class GameProgressService {
         MemberEntity member = memberRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("해당 유저가 존재하지 않습니다."));
 
-        GameProgressEntity progress = gameProgressRepository.findByMember(member);
-        if (progress == null) {
-            throw new RuntimeException("해당 유저의 게임 진행 정보가 없습니다.");
-        }
+        GameProgressEntity progress = gameProgressRepository.findByMember(member)
+                .orElseThrow(() -> new RuntimeException("해당 유저의 게임 진행 정보가 없습니다."));
+
         return progress.getCurrent_day();
     }
 
