@@ -21,24 +21,30 @@ public class GameProgressService {
         this.memberRepository = memberRepository;
     }
 
-    public void initMember(String username) {
+    public GameProgressDTO initMember(String username) {
         MemberEntity member = memberRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("해당 유저가 존재하지 않습니다."));
 
         boolean exists = gameProgressRepository.existsByMember(member);
+        GameProgressEntity progress;
 
         if(!exists) {
-            GameProgressEntity progress = new GameProgressEntity();
+            progress = new GameProgressEntity();
 
             progress.setMember(member);
             progress.setGender(member.getGender());
             progress.setCurrent_day(1);
-            progress.setCh_stat_health(0);
-            progress.setCh_stat_mental(0);
-            progress.setCh_stat_money(0);
-            progress.setCh_stat_rep(0);
+            progress.setCh_stat_health(50);
+            progress.setCh_stat_mental(50);
+            progress.setCh_stat_money(50);
+            progress.setCh_stat_rep(50);
             gameProgressRepository.save(progress);
         }
+        else {
+            progress = gameProgressRepository.findByMember(member)
+                    .orElseThrow(() -> new RuntimeException("진행 정보가 없습니다."));
+        }
+        return new GameProgressDTO(progress);
     }
 
     public int getCurrentDayByUsername(String username) {

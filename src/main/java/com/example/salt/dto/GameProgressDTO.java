@@ -1,5 +1,6 @@
 package com.example.salt.dto;
 
+import com.example.salt.entity.GameProgressEntity;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -17,4 +18,14 @@ public class GameProgressDTO {
     private int ch_stat_health;
     private int ch_stat_mental;
     private int ch_stat_rep;
+
+    public GameProgressDTO(GameProgressEntity entity) {
+        this.id = entity.getId();
+        this.current_day = entity.getCurrent_day();
+        this.ch_stat_money = entity.getCh_stat_money();
+        this.ch_stat_health = entity.getCh_stat_health();
+        this.ch_stat_mental = entity.getCh_stat_mental();
+        this.ch_stat_rep = entity.getCh_stat_rep();
+    }
 }
+

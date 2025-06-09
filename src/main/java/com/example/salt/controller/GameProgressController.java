@@ -1,0 +1,31 @@
+package com.example.salt.controller;
+
+import com.example.salt.dto.GameProgressDTO;
+import com.example.salt.entity.MemberEntity;
+import com.example.salt.repository.MemberRepository;
+import com.example.salt.service.GameProgressService;
+import com.example.salt.service.MemberService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+public class GameProgressController {
+
+    private final GameProgressService gameProgressService;
+    private final MemberService memberService;
+
+    public GameProgressController(GameProgressService gameProgressService, MemberService memberService) {
+        this.gameProgressService = gameProgressService;
+        this.memberService = memberService;
+    }
+
+    @PostMapping("/init")
+    public ResponseEntity<GameProgressDTO> getGameInitData(@RequestParam String username) {
+        GameProgressDTO dto = gameProgressService.initMember(username);
+        return ResponseEntity.ok(dto);
+
+    }
+
+
+}
