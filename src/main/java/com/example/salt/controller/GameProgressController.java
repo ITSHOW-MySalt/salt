@@ -8,6 +8,7 @@ import com.example.salt.service.MemberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class GameProgressController {
@@ -20,9 +21,11 @@ public class GameProgressController {
         this.memberService = memberService;
     }
 
-    @PostMapping("/init")
+    @GetMapping("/init")
     public ResponseEntity<GameProgressDTO> getGameInitData(@RequestParam String username) {
         GameProgressDTO dto = gameProgressService.initMember(username);
+        System.out.println(dto);
+        System.out.println(username);
         return ResponseEntity.ok(dto);
 
     }

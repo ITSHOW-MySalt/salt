@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // CORS 프리플라이트 허용
-                        .requestMatchers("/api/check", "/api/user/**", "/api/event/**").permitAll()
+                        .requestMatchers("/api/check", "/api/user/**", "/api/event/**", "/api/init/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.disable())
