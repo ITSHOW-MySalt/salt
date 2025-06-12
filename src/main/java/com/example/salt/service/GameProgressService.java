@@ -68,5 +68,24 @@ public class GameProgressService {
         gameProgressRepository.save(progress);
     }
 
+    public void resetProgress(String username) {
+        //멤버 정보 가져오기
+        MemberEntity member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다"));
+
+        //진행 정보 가져오기
+        GameProgressEntity progress = gameProgressRepository.findByMember(member)
+                .orElseThrow(() -> new RuntimeException("게임 진행 정보가 없습니다"));
+
+        // 진행 정보 초기화
+        progress.setCurrent_day(1);
+        progress.setCh_stat_money(50);
+        progress.setCh_stat_health(50);
+        progress.setCh_stat_mental(50);
+        progress.setCh_stat_rep(50);
+
+        gameProgressRepository.save(progress);
+    }
+
 
 }
