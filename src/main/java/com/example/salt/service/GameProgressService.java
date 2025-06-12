@@ -57,5 +57,16 @@ public class GameProgressService {
         return progress.getCurrent_day();
     }
 
+    public void incrementDay(String username) {
+        MemberEntity member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("해당 유저가 존재하지 않습니다."));
+
+        GameProgressEntity progress = gameProgressRepository.findByMember(member)
+                .orElseThrow(() -> new RuntimeException("해당 유저의 게임 진행 정보가 없습니다."));
+
+        progress.setCurrent_day(progress.getCurrent_day() + 1);
+        gameProgressRepository.save(progress);
+    }
+
 
 }
