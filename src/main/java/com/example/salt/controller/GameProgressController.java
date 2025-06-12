@@ -43,6 +43,18 @@ public class GameProgressController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/reset-progress")
+    public ResponseEntity<Void> resetProgress(@RequestBody Map<String, String> request) {
+        String username = request.get("username");
+        if (username == null || username.isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        gameProgressService.resetProgress(username);
+
+        return ResponseEntity.ok().build();
+    }
+
 
 
 }
