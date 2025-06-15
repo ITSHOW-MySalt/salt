@@ -15,7 +15,7 @@ public class NewsEventsEntity {
     @OneToOne
     @MapsId
     @JoinColumn(name = "id")
-    private NewsEntitiy news;
+    private NewsEntity news;
 
     private String dialogue;
     private String choice1;
