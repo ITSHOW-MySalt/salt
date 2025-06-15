@@ -7,14 +7,14 @@ import lombok.Data;
 public class NewsProgressDTO {
 
     private int id;
-    private int game_progress_id;
-    private int news_id;
+    private int gameProgressId;
+    private int newsId;
 
     public NewsProgressDTO(NewsProgressEntity entity) {
         this.id = entity.getId();
-        this.game_progress_id = entity.getId();
-        this.news_id = entity.getNews_id();
+        this.gameProgressId = entity.getGameProgressEntity() != null
+                ? entity.getGameProgressEntity().getId()
+                : 0; // 또는 예외 처리
+        this.newsId = entity.getNewsId();
     }
-
 }
-
