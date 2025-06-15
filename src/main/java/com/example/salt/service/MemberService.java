@@ -3,8 +3,6 @@ package com.example.salt.service;
 import com.example.salt.dto.MemberDTO;
 import com.example.salt.entity.MemberEntity;
 import com.example.salt.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 @Service
