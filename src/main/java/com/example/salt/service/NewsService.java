@@ -1,12 +1,13 @@
 package com.example.salt.service;
 
-import com.example.salt.dto.NewsDTO;
-import com.example.salt.entity.NewsEntitiy;
+import com.example.salt.entity.NewsEntity;
 import com.example.salt.repository.NewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class NewsService {
@@ -14,18 +15,18 @@ public class NewsService {
     @Autowired
     private NewsRepository newsRepository;
 
-    public NewsService(NewsRepository repository) {
-        this.newsRepository = repository;
+    public long getNewsCount() {
+        return newsRepository.count();
     }
 
-    public long getRowCount(){
-        return newsRepository.countRows();
+    public List<Integer> getRandomNewsIds(int count) {
+        List<Integer> allIds = newsRepository.findAllIds(); // 모든 뉴스 ID 불러오기
+        Collections.shuffle(allIds); // 무작위 섞기
+        return allIds.stream().distinct().limit(count).collect(Collectors.toList()); // 중복 제거 후 n개 추출
     }
 
-    public NewsDTO selectById(int selectId) {
-        return newsRepository.findById(selectId)
-                .map(NewsDTO::new)
-                .orElse(null);
+    public NewsEntity getNewsById(int id) {
+        return newsRepository.findById(id).orElse(null);
     }
 
 //    public NewsDTO randomNews(){

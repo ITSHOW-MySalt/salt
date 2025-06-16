@@ -12,9 +12,13 @@ public class NewsProgressEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    // game_progress_id 외래키 매핑
     @ManyToOne
-    @JoinColumn(name = "username_id")
+    @JoinColumn(name = "game_progress_id", nullable = false)
     private GameProgressEntity gameProgressEntity;
 
-    private int news_id;
+    // news_id 컬럼 매핑 (기본 타입)
+    @Column(name = "news_id", nullable = false)
+    private int newsId;
+
 }
