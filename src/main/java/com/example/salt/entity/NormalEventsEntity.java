@@ -13,18 +13,33 @@ public class NormalEventsEntity {
     private int id;
 
     private String dialogue;
+
     private String choice1;
     private String choice2;
 
-    private int ch_stat1_money;
-    private int ch_stat1_health;
-    private int ch_stat1_mental;
-    private int ch_stat1_rep;
+    @Column(name = "ch_stat1_Money")
+    private int ch_stat1_Money;
 
-    private int ch_stat2_money;
-    private int ch_stat2_health;
-    private int ch_stat2_mental;
-    private int ch_stat2_rep;
+    @Column(name = "ch_stat1_Health")
+    private int ch_stat1_Health;
+
+    @Column(name = "ch_stat1_Mental")
+    private int ch_stat1_Mental;
+
+    @Column(name = "ch_stat1_Rep")
+    private int ch_stat1_Rep;
+
+    @Column(name = "ch_stat2_Money")
+    private int ch_stat2_Money;
+
+    @Column(name = "ch_stat2_Health")
+    private int ch_stat2_Health;
+
+    @Column(name = "ch_stat2_Mental")
+    private int ch_stat2_Mental;
+
+    @Column(name = "ch_stat2_Rep")
+    private int ch_stat2_Rep;
 
     private String background;
 }
