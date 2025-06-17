@@ -55,6 +55,25 @@ public class GameProgressController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping("/update-progress")
+    public ResponseEntity<Void> updateProgress(@RequestBody Map<String, Object> request) {
+        String username = (String) request.get("username");
+        if (username == null || username.isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
 
+        try {
+            Integer money = (Integer) request.get("ch_stat_money");
+            Integer health = (Integer) request.get("ch_stat_health");
+            Integer mental = (Integer) request.get("ch_stat_mental");
+            Integer rep = (Integer) request.get("ch_stat_rep");
+
+            gameProgressService.updateProgress(username, money, health, mental, rep);
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
+    }
 
 }

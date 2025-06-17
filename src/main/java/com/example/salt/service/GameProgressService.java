@@ -90,4 +90,19 @@ public class GameProgressService {
 
         return progress.getId();
     }
+
+    public void updateProgress(String username, Integer money, Integer health, Integer mental, Integer rep) {
+        GameProgressEntity progress = gameProgressRepository.findByMemberUsername(username)
+                .orElseThrow(() -> new RuntimeException("해당 유저의 게임 진행 정보가 없습니다."));
+        if (progress == null) {
+            throw new RuntimeException("User progress not found");
+        }
+
+        if (money != null) progress.setCh_stat_money(money);
+        if (health != null) progress.setCh_stat_health(health);
+        if (mental != null) progress.setCh_stat_mental(mental);
+        if (rep != null) progress.setCh_stat_rep(rep);
+
+        gameProgressRepository.save(progress);
+    }
 }
