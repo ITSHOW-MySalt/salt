@@ -25,7 +25,6 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/check",
                                 "/api/user/**",
-                                "/api/events/**",
                                 "/api/init/**",
                                 "/api/next-day",
                                 "/api/reset-progress",
