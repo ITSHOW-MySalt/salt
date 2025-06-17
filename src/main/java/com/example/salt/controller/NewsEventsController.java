@@ -16,17 +16,14 @@ import java.util.Random;
 public class NewsEventsController {
 
     private final NewsEventsService service;
-    private final GameProgressService gameProgressService; // ✅ GameProgressService 주입
 
-    public NewsEventsController(NewsEventsService service, GameProgressService gameProgressService) {
+    public NewsEventsController(NewsEventsService service) {
         this.service = service;
-        this.gameProgressService = gameProgressService;
     }
 
     @GetMapping("/events/news")
-    public ResponseEntity<?> getNewsEvent(@RequestParam("username_id") int userId) {
-        // userId 기준 뉴스 목록 조회
-        List<NewsProgressEntity> newsList = service.getSavedNewsByUserId(userId);
+    public ResponseEntity<?> getNewsEvent(@RequestParam("username_id") int usernameId) {
+        List<NewsProgressEntity> newsList = service.getSavedNewsByUserId(usernameId);
         if (newsList.isEmpty()) {
             return ResponseEntity.status(404).body("저장된 뉴스가 없습니다.");
         }
@@ -38,11 +35,8 @@ public class NewsEventsController {
 
         NewsEventsDTO dto = service.selectById(newsId);
 
-        // userId 기준 뉴스 삭제
-        service.deleteNewsProgressByUserId(userId, newsId);
+        service.deleteNewsProgressByUserId(usernameId, newsId);
 
         return ResponseEntity.ok(dto);
     }
-
-
 }
