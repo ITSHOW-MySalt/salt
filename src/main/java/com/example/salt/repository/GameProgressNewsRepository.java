@@ -13,12 +13,11 @@ import java.util.List;
 @Repository
 public interface GameProgressNewsRepository extends JpaRepository<NewsProgressEntity, Integer> {
 
-    // gameProgressEntity 객체의 id 필드로 조회
-    List<NewsProgressEntity> findByGameProgressEntity_Id(int gameProgressId);
+    List<NewsProgressEntity> findByGameProgressId(int gameProgressId);
 
     @Modifying
-    @Query("DELETE FROM NewsProgressEntity n WHERE n.gameProgressEntity.id = :gameProgressId")
-    void deleteByGameProgressEntityId(@Param("gameProgressId") int gameProgressId);
+    @Transactional
+    void deleteByGameProgressId(int gameProgressId);
 
     @Modifying
     @Transactional

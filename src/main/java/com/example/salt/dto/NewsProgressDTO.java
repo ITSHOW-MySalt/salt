@@ -12,9 +12,7 @@ public class NewsProgressDTO {
 
     public NewsProgressDTO(NewsProgressEntity entity) {
         this.id = entity.getId();
-        this.gameProgressId = entity.getGameProgressEntity() != null
-                ? entity.getGameProgressEntity().getId()
-                : 0; // 또는 예외 처리
+        this.gameProgressId = entity.getGameProgressId();  // 정수형 필드 직접 사용
         this.newsId = entity.getNewsId();
     }
 }

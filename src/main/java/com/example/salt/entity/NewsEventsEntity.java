@@ -10,11 +10,10 @@ public class NewsEventsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id; // 고유한 기본 키
 
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "news_id") // news_id 외래키로 연결
     private NewsEntity news;
 
     private String dialogue;

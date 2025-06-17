@@ -17,30 +17,25 @@ public class GameProgressNewsService {
 
     @Transactional
     public void saveRandomNewsIds(int gameProgressId, List<Integer> newsIds) {
-        GameProgressEntity progressEntity = new GameProgressEntity();
-        progressEntity.setId(gameProgressId); // 껍데기만 생성해도 JPA에서는 FK 설정 가능
-
-        newsIds.forEach(id -> {
+        newsIds.forEach(newsId -> {
             NewsProgressEntity entity = new NewsProgressEntity();
-            entity.setGameProgressEntity(progressEntity); // 이게 핵심!
-            entity.setNewsId(id);
+            entity.setGameProgressId(gameProgressId);  // 숫자로 직접 설정
+            entity.setNewsId(newsId);
             gameProgressNewsRepository.save(entity);
         });
     }
 
     public List<NewsProgressEntity> getSavedNews(int gameProgressId) {
-        return gameProgressNewsRepository.findByGameProgressEntity_Id(gameProgressId);
+        return gameProgressNewsRepository.findByGameProgressId(gameProgressId);
     }
 
+    @Transactional
+    public void deleteAllByGameProgressId(int gameProgressId) {
+        gameProgressNewsRepository.deleteByGameProgressId(gameProgressId);
+    }
 
     @Transactional
     public void deleteById(int id) {
         gameProgressNewsRepository.deleteById(id);
     }
-
-    @Transactional
-    public void deleteAllByGameProgressId(int gameProgressId) {
-        gameProgressNewsRepository.deleteByGameProgressEntityId(gameProgressId);
-    }
-
 }
