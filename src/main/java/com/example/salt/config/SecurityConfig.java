@@ -31,7 +31,8 @@ public class SecurityConfig {
                                 "/api/dialogues/**",
                                 "/api/news/**",
                                 "/api/events/**",
-                                "/api/update-progress"
+                                "/api/update-progress",
+                                "/api/ending/**"
                         ).permitAll()
 
                         .anyRequest().authenticated()
