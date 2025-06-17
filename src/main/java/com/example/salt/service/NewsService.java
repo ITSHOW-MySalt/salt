@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class NewsService {
-
     @Autowired
     private NewsRepository newsRepository;
 
@@ -26,7 +26,13 @@ public class NewsService {
     }
 
     public NewsEntity getNewsById(int id) {
-        return newsRepository.findById(id).orElse(null);
+        Optional<NewsEntity> optionalNews = newsRepository.findById(id);
+        if(optionalNews.isEmpty()) {
+            System.out.println("뉴스 조회 실패 id=" + id);
+            return null;
+        }
+        System.out.println("뉴스 조회 성공 id=" + id);
+        return optionalNews.get();
     }
 
 //    public NewsDTO randomNews(){

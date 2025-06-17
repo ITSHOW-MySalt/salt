@@ -30,7 +30,8 @@ public class SecurityConfig {
                                 "/api/next-day",
                                 "/api/reset-progress",
                                 "/api/dialogues/**",
-                                "/api/news/**"
+                                "/api/news/**",
+                                "/api/events/**"
                         ).permitAll()
 
                         .anyRequest().authenticated()

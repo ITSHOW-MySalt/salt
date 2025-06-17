@@ -1,17 +1,14 @@
 package com.example.salt.service;
 
 import com.example.salt.dto.GameProgressDTO;
-import com.example.salt.dto.MemberDTO;
 import com.example.salt.entity.GameProgressEntity;
 import com.example.salt.entity.MemberEntity;
 import com.example.salt.repository.GameProgressRepository;
 import com.example.salt.repository.MemberRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class GameProgressService {
-
 
     private final GameProgressRepository gameProgressRepository;
     private final MemberRepository memberRepository;
@@ -28,7 +25,7 @@ public class GameProgressService {
         boolean exists = gameProgressRepository.existsByMember(member);
         GameProgressEntity progress;
 
-        if(!exists) {
+        if (!exists) {
             progress = new GameProgressEntity();
 
             progress.setMember(member);
@@ -39,8 +36,7 @@ public class GameProgressService {
             progress.setCh_stat_money(50);
             progress.setCh_stat_rep(50);
             gameProgressRepository.save(progress);
-        }
-        else {
+        } else {
             progress = gameProgressRepository.findByMember(member)
                     .orElseThrow(() -> new RuntimeException("진행 정보가 없습니다."));
         }
@@ -69,15 +65,12 @@ public class GameProgressService {
     }
 
     public void resetProgress(String username) {
-        //멤버 정보 가져오기
         MemberEntity member = memberRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("유저를 찾을 수 없습니다"));
 
-        //진행 정보 가져오기
         GameProgressEntity progress = gameProgressRepository.findByMember(member)
                 .orElseThrow(() -> new RuntimeException("게임 진행 정보가 없습니다"));
 
-        // 진행 정보 초기화
         progress.setCurrent_day(1);
         progress.setCh_stat_money(50);
         progress.setCh_stat_health(50);
@@ -87,5 +80,14 @@ public class GameProgressService {
         gameProgressRepository.save(progress);
     }
 
+    // 새로 추가한 메서드 - userId 기준 gameProgressId 조회
+    public Integer getGameProgressIdByUserId(int userId) {
+        MemberEntity member = memberRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("해당 유저가 존재하지 않습니다. ID: " + userId));
 
+        GameProgressEntity progress = gameProgressRepository.findByMember(member)
+                .orElseThrow(() -> new RuntimeException("해당 유저의 게임 진행 정보가 없습니다. ID: " + userId));
+
+        return progress.getId();
+    }
 }
