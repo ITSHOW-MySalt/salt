@@ -1,6 +1,7 @@
 package com.example.salt.controller;
 
 import com.example.salt.dto.EndingDTO;
+import com.example.salt.service.EndingService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
