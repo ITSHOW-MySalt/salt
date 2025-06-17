@@ -58,4 +58,17 @@ public class MemberController {
             return ResponseEntity.badRequest().body(response);
         }
     }
+
+    @GetMapping("/user/id")
+    public ResponseEntity<Map<String, Object>> getUserIdByUsername(@RequestParam String username) {
+        Integer userId = memberService.findUserIdByUsername(username);
+        if (userId != null) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("userId", userId);
+            return ResponseEntity.ok(response);
+        } else {
+            return ResponseEntity.status(404).body(Map.of("error", "User not found"));
+        }
+    }
+
 }
