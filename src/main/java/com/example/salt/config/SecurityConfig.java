@@ -30,7 +30,8 @@ public class SecurityConfig {
                                 "/api/reset-progress",
                                 "/api/dialogues/**",
                                 "/api/news/**",
-                                "/api/events/**"
+                                "/api/events/**",
+                                "/api/update-progress"
                         ).permitAll()
 
                         .anyRequest().authenticated()

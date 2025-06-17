@@ -11,4 +11,5 @@ public interface GameProgressRepository extends JpaRepository<GameProgressEntity
     boolean existsByMember(MemberEntity member);
 
     Optional<GameProgressEntity> findByMember(MemberEntity member);
+    Optional<GameProgressEntity> findByMemberUsername(String username);
 }
