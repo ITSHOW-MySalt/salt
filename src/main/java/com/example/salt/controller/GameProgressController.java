@@ -1,8 +1,10 @@
 package com.example.salt.controller;
 
+import com.example.salt.dto.EndingDTO;
 import com.example.salt.dto.GameProgressDTO;
 import com.example.salt.entity.MemberEntity;
 import com.example.salt.repository.MemberRepository;
+import com.example.salt.service.EndingService;
 import com.example.salt.service.GameProgressService;
 import com.example.salt.service.MemberService;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +19,12 @@ public class GameProgressController {
 
     private final GameProgressService gameProgressService;
     private final MemberService memberService;
+    private final EndingService endingService;
 
-    public GameProgressController(GameProgressService gameProgressService, MemberService memberService) {
+    public GameProgressController(GameProgressService gameProgressService, MemberService memberService, EndingService endingService) {
         this.gameProgressService = gameProgressService;
         this.memberService = memberService;
+        this.endingService = endingService;
     }
 
     @GetMapping("/init")
@@ -56,24 +60,34 @@ public class GameProgressController {
     }
 
     @PostMapping("/update-progress")
-    public ResponseEntity<Void> updateProgress(@RequestBody Map<String, Object> request) {
+    public ResponseEntity<?> updateProgress(@RequestBody Map<String, Object> request) {
         String username = (String) request.get("username");
         if (username == null || username.isBlank()) {
             return ResponseEntity.badRequest().build();
         }
 
-        try {
-            Integer money = (Integer) request.get("ch_stat_money");
-            Integer health = (Integer) request.get("ch_stat_health");
-            Integer mental = (Integer) request.get("ch_stat_mental");
-            Integer rep = (Integer) request.get("ch_stat_rep");
+            try {
+                Integer money = (Integer) request.get("ch_stat_money");
+                Integer health = (Integer) request.get("ch_stat_health");
+                Integer mental = (Integer) request.get("ch_stat_mental");
+                Integer rep = (Integer) request.get("ch_stat_rep");
 
-            gameProgressService.updateProgress(username, money, health, mental, rep);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-        }
+                gameProgressService.updateProgress(username, money, health, mental, rep);
+
+                // 엔딩 판단
+                EndingDTO endingDTO = endingService.checkEnding(username, money, health, mental, rep);
+                if(endingDTO != null){
+                    return ResponseEntity.ok(Map.of(
+                            "ending", endingDTO.getEndingname(),
+                            "imglink", endingDTO.getImglink()
+                    ));
+                }
+
+                return ResponseEntity.ok().build();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return ResponseEntity.badRequest().build();
+            }
     }
 
 }
