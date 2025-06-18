@@ -12,4 +12,5 @@ public interface GameProgressRepository extends JpaRepository<GameProgressEntity
 
     Optional<GameProgressEntity> findByMember(MemberEntity member);
     Optional<GameProgressEntity> findByMemberUsername(String username);
+
 }
