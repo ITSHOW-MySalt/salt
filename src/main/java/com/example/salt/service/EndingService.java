@@ -36,12 +36,19 @@ public class EndingService {
                 .toList();
     }
 
-    public EndingDTO checkEnding(String username, int money, int health, int mental, int rep){
+    public EndingDTO checkEnding(String username){
         MemberEntity memberEntity= memberRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("멤버가 존재하지 않습니다."));
 
         GameProgressEntity gameProgressEntity = gameProgressRepository.findByMember(memberEntity)
                 .orElseThrow(() -> new RuntimeException("멤버가 존재하지 않습니다."));
+
+        int money = gameProgressEntity.getCh_stat_money();
+        int health = gameProgressEntity.getCh_stat_health();
+        int mental = gameProgressEntity.getCh_stat_mental();
+        int rep = gameProgressEntity.getCh_stat_rep();
+
+        int current = gameProgressEntity.getCurrent_day();
 
         Integer endingId = null;
         if(health == 0){
@@ -53,13 +60,16 @@ public class EndingService {
         else if(rep==0) {
             endingId = 6;
         }
-        else if(money <=40 ){
+        else if(money==0){
             endingId = 1;
         }
-        else if(money>40 && money<=80){
+        else if(money > 0 && money <=40 && current == 35){
+            endingId = 1;
+        }
+        else if(money>40 && money<=80 && current == 35){
             endingId = 2;
         }
-        else if(money>80){
+        else if(money>80 && current == 35){
             endingId = 3;
         }
         else {

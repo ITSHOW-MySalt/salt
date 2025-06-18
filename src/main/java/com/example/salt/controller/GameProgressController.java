@@ -74,20 +74,32 @@ public class GameProgressController {
 
                 gameProgressService.updateProgress(username, money, health, mental, rep);
 
-                // 엔딩 판단
-                EndingDTO endingDTO = endingService.checkEnding(username, money, health, mental, rep);
-                if(endingDTO != null){
-                    return ResponseEntity.ok(Map.of(
-                            "ending", endingDTO.getEndingname(),
-                            "imglink", endingDTO.getImglink()
-                    ));
-                }
-
                 return ResponseEntity.ok().build();
             } catch (Exception e) {
                 e.printStackTrace();
                 return ResponseEntity.badRequest().build();
             }
+    }
+
+    @GetMapping("/check-ending")
+    public ResponseEntity<?> checkEnding(@RequestParam String username) {
+        if (username == null || username.isBlank()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        try{
+            EndingDTO endingDTO = endingService.checkEnding(username);
+            if(endingDTO != null){
+                return ResponseEntity.ok(Map.of(
+                        "ending", endingDTO.getEndingname(),
+                        "imglink", endingDTO.getImglink()
+                ));
+            }
+            return ResponseEntity.ok().build();
+        }catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
     }
 
 }
