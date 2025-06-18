@@ -32,7 +32,9 @@ public class SecurityConfig {
                                 "/api/news/**",
                                 "/api/events/**",
                                 "/api/update-progress",
-                                "/api/ending/**"
+                                "/api/ending/**",
+                                "/api/check-ending",
+                                "/api/check-ending/**"
                         ).permitAll()
 
                         .anyRequest().authenticated()
