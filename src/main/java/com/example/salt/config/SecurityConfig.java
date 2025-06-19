@@ -33,7 +33,6 @@ public class SecurityConfig {
                                 "/api/events/**",
                                 "/api/update-progress",
                                 "/api/ending/**",
-                                "/api/check-ending",
                                 "/api/check-ending/**"
                         ).permitAll()
 
