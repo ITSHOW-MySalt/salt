@@ -2,8 +2,6 @@ package com.example.salt.controller;
 
 import com.example.salt.dto.EndingDTO;
 import com.example.salt.dto.GameProgressDTO;
-import com.example.salt.entity.MemberEntity;
-import com.example.salt.repository.MemberRepository;
 import com.example.salt.service.EndingService;
 import com.example.salt.service.GameProgressService;
 import com.example.salt.service.MemberService;
@@ -33,7 +31,6 @@ public class GameProgressController {
         System.out.println(dto);
         System.out.println(username);
         return ResponseEntity.ok(dto);
-
     }
 
     @PostMapping("/next-day")
@@ -66,19 +63,19 @@ public class GameProgressController {
             return ResponseEntity.badRequest().build();
         }
 
-            try {
-                Integer money = (Integer) request.get("ch_stat_money");
-                Integer health = (Integer) request.get("ch_stat_health");
-                Integer mental = (Integer) request.get("ch_stat_mental");
-                Integer rep = (Integer) request.get("ch_stat_rep");
+        try {
+            Integer money = (Integer) request.get("ch_stat_money");
+            Integer health = (Integer) request.get("ch_stat_health");
+            Integer mental = (Integer) request.get("ch_stat_mental");
+            Integer rep = (Integer) request.get("ch_stat_rep");
 
-                gameProgressService.updateProgress(username, money, health, mental, rep);
+            gameProgressService.updateProgress(username, money, health, mental, rep);
 
-                return ResponseEntity.ok().build();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return ResponseEntity.badRequest().build();
-            }
+            return ResponseEntity.ok().build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @GetMapping("/check-ending")
@@ -87,19 +84,20 @@ public class GameProgressController {
             return ResponseEntity.badRequest().build();
         }
 
-        try{
+        try {
             EndingDTO endingDTO = endingService.checkEnding(username);
-            if(endingDTO != null){
+            if (endingDTO != null) {
+                gameProgressService.updateEndingList(username, 1);
+
                 return ResponseEntity.ok(Map.of(
                         "ending", endingDTO.getEndingname(),
                         "imglink", endingDTO.getImglink()
                 ));
             }
             return ResponseEntity.ok().build();
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
     }
-
 }

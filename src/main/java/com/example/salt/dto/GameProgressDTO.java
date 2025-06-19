@@ -15,6 +15,8 @@ public class GameProgressDTO {
     private int ch_stat_mental;
     private int ch_stat_rep;
 
+    private int ending_list;
+
     public GameProgressDTO(GameProgressEntity entity) {
         this.id = entity.getId();
         this.username_id = entity.getMember().getId();
@@ -24,5 +26,6 @@ public class GameProgressDTO {
         this.ch_stat_health = entity.getCh_stat_health();
         this.ch_stat_mental = entity.getCh_stat_mental();
         this.ch_stat_rep = entity.getCh_stat_rep();
+        this.ending_list = entity.getEnding_list();
     }
 }

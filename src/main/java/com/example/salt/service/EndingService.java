@@ -51,16 +51,16 @@ public class EndingService {
         int current = gameProgressEntity.getCurrent_day();
 
         Integer endingId = null;
-        if(health == 0){
+        if(health <= 0){
             endingId = 4;
         }
-        else if(mental == 0){
+        else if(mental <= 0){
             endingId = 5;
         }
-        else if(rep==0) {
+        else if(rep<=0) {
             endingId = 6;
         }
-        else if(money==0){
+        else if(money<=0){
             endingId = 1;
         }
         else if(money > 0 && money <=40 && current == 35){
@@ -84,10 +84,6 @@ public class EndingService {
         if(endingEntity == null) return null;
 
         return new EndingDTO(endingEntity);
-
-
-
-
     }
 
 }
