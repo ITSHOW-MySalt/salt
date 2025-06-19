@@ -21,5 +21,14 @@ public class EndingController {
         return ResponseEntity.ok(endingDTO);
     }
 
+    @GetMapping("/check-ending")
+    public ResponseEntity<EndingDTO> checkEnding(@RequestParam String username) {
+        EndingDTO endingDTO = endingService.checkEnding(username);
+        if (endingDTO == null) {
+            return ResponseEntity.noContent().build(); // 조건 불충족 시 204 No Content
+        }
+        return ResponseEntity.ok(endingDTO);
+    }
+
 
 }
