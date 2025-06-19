@@ -35,6 +35,7 @@ public class GameProgressService {
             progress.setCh_stat_mental(50);
             progress.setCh_stat_money(50);
             progress.setCh_stat_rep(50);
+            progress.setEnding_list(0);
             gameProgressRepository.save(progress);
         } else {
             progress = gameProgressRepository.findByMember(member)
@@ -104,5 +105,9 @@ public class GameProgressService {
         if (rep != null) progress.setCh_stat_rep(rep);
 
         gameProgressRepository.save(progress);
+    }
+
+    public void updateEndingList(String username, int endingValue) {
+        gameProgressRepository.updateEndingListByMemberUsername(username, endingValue);
     }
 }

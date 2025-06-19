@@ -26,4 +26,5 @@
         private int ch_stat_health;
         private int ch_stat_mental;
         private int ch_stat_rep;
+        private int ending_list;
     }
