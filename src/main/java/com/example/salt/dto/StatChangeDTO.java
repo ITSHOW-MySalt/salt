@@ -12,15 +12,15 @@ public class StatChangeDTO {
 
     public StatChangeDTO(NormalEventsEntity entity, int choiceNumber) {
         if (choiceNumber == 1) {
-            this.ch_stat_money = entity.getCh_stat1_Money();
-            this.ch_stat_health = entity.getCh_stat1_Health();
-            this.ch_stat_mental = entity.getCh_stat1_Mental();
-            this.ch_stat_rep = entity.getCh_stat1_Rep();
+            this.ch_stat_money = entity.getCh_stat1_money();
+            this.ch_stat_health = entity.getCh_stat1_health();
+            this.ch_stat_mental = entity.getCh_stat1_mental();
+            this.ch_stat_rep = entity.getCh_stat1_rep();
         } else {
-            this.ch_stat_money = entity.getCh_stat2_Money();
-            this.ch_stat_health = entity.getCh_stat2_Health();
-            this.ch_stat_mental = entity.getCh_stat2_Mental();
-            this.ch_stat_rep = entity.getCh_stat2_Rep();
+            this.ch_stat_money = entity.getCh_stat2_money();
+            this.ch_stat_health = entity.getCh_stat2_health();
+            this.ch_stat_mental = entity.getCh_stat2_mental();
+            this.ch_stat_rep = entity.getCh_stat2_rep();
         }
     }
 }

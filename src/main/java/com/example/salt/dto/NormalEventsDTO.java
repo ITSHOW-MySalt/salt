@@ -32,14 +32,14 @@ public class NormalEventsDTO {
         this.dialogue = entity.getDialogue();
         this.choice1Text = entity.getChoice1();
         this.choice2Text = entity.getChoice2();
-        this.ch_stat1_Money = entity.getCh_stat1_Money();
-        this.ch_stat1_Health = entity.getCh_stat1_Health();
-        this.ch_stat1_Mental = entity.getCh_stat1_Mental();
-        this.ch_stat1_Rep = entity.getCh_stat1_Rep();
-        this.ch_stat2_Money = entity.getCh_stat2_Money();
-        this.ch_stat2_Health = entity.getCh_stat2_Health();
-        this.ch_stat2_Mental = entity.getCh_stat2_Mental();
-        this.ch_stat2_Rep = entity.getCh_stat2_Rep();
+        this.ch_stat1_Money = entity.getCh_stat1_money();
+        this.ch_stat1_Health = entity.getCh_stat1_health();
+        this.ch_stat1_Mental = entity.getCh_stat1_mental();
+        this.ch_stat1_Rep = entity.getCh_stat1_rep();
+        this.ch_stat2_Money = entity.getCh_stat2_money();
+        this.ch_stat2_Health = entity.getCh_stat2_health();
+        this.ch_stat2_Mental = entity.getCh_stat2_mental();
+        this.ch_stat2_Rep = entity.getCh_stat2_rep();
         this.background = entity.getBackground();
     }
 }
