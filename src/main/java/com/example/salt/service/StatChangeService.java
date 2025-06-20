@@ -33,15 +33,15 @@ public class StatChangeService {
                 .orElseThrow(() -> new RuntimeException("게임 진행 정보가 존재하지 않습니다."));
 
         if(choiceNumber == 1) {
-            gameProgress.setCh_stat_money(gameProgress.getCh_stat_money() + normalEvents.getCh_stat1_Money());
-            gameProgress.setCh_stat_mental(gameProgress.getCh_stat_mental() + normalEvents.getCh_stat1_Mental());
-            gameProgress.setCh_stat_health(gameProgress.getCh_stat_health() + normalEvents.getCh_stat1_Health());
-            gameProgress.setCh_stat_rep(gameProgress.getCh_stat_rep() + normalEvents.getCh_stat1_Rep());
+            gameProgress.setCh_stat_money(gameProgress.getCh_stat_money() + normalEvents.getCh_stat1_money());
+            gameProgress.setCh_stat_mental(gameProgress.getCh_stat_mental() + normalEvents.getCh_stat1_mental());
+            gameProgress.setCh_stat_health(gameProgress.getCh_stat_health() + normalEvents.getCh_stat1_health());
+            gameProgress.setCh_stat_rep(gameProgress.getCh_stat_rep() + normalEvents.getCh_stat1_rep());
         } else if(choiceNumber == 2){
-            gameProgress.setCh_stat_money(gameProgress.getCh_stat_money() + normalEvents.getCh_stat2_Money());
-            gameProgress.setCh_stat_mental(gameProgress.getCh_stat_mental() + normalEvents.getCh_stat2_Mental());
-            gameProgress.setCh_stat_health(gameProgress.getCh_stat_health() + normalEvents.getCh_stat2_Health());
-            gameProgress.setCh_stat_rep(gameProgress.getCh_stat_rep() + normalEvents.getCh_stat2_Rep());
+            gameProgress.setCh_stat_money(gameProgress.getCh_stat_money() + normalEvents.getCh_stat2_money());
+            gameProgress.setCh_stat_mental(gameProgress.getCh_stat_mental() + normalEvents.getCh_stat2_mental());
+            gameProgress.setCh_stat_health(gameProgress.getCh_stat_health() + normalEvents.getCh_stat2_health());
+            gameProgress.setCh_stat_rep(gameProgress.getCh_stat_rep() + normalEvents.getCh_stat2_rep());
         }
 
         gameProgressRepository.save(gameProgress);
