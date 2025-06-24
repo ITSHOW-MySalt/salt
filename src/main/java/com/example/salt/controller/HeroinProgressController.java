@@ -53,4 +53,17 @@ public class HeroinProgressController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재함");
         }
     }
+
+    // [5] 진행 리셋 (호감도, 만남횟수 모두 0으로 초기화)
+    @PostMapping("/reset-progress")
+    public ResponseEntity<?> resetHeroineProgress(@RequestParam int gameProgressId) {
+        try {
+            heroinService.resetHeroinProgress(gameProgressId);
+            return ResponseEntity.ok("히로인 진행도 리셋 완료");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("히로인 진행도 리셋 실패");
+        }
+    }
 }

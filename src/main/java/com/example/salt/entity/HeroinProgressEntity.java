@@ -3,6 +3,8 @@ package com.example.salt.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Optional;
+
 @Entity
 @Table(name = "heroin_progress_tb")
 @Data
@@ -20,4 +22,5 @@ public class HeroinProgressEntity {
     private int heroinB_affection;
     private int heroinA_meetCount;
     private int heroinB_meetCount;
+
 }
